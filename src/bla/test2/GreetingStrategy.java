@@ -13,20 +13,21 @@ import bla.test2.base.Strategy;
 public class GreetingStrategy implements Strategy {
 
 
-	public void algorithmus(String fileName){
-		String line = "";
-		try {
-			FileInputStream inputStream = new FileInputStream(fileName);
-			InputStreamReader inputStreamReader = new InputStreamReader(inputStream);
-			BufferedReader bufferReader = new BufferedReader(inputStreamReader);		
-			bufferReader.readLine();
-			while((line=bufferReader.readLine())!= null){
-				System.out.println("Hallo " + line);
-			}
-			bufferReader.close();
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		};
-	}
+    public void algorithmus(String fileName) {
+        String line = "";
+        try {
+            FileInputStream inputStream = new FileInputStream(fileName);
+            InputStreamReader inputStreamReader = new InputStreamReader(inputStream);
+            BufferedReader bufferReader = new BufferedReader(inputStreamReader);
+            bufferReader.readLine();
+            while ((line = bufferReader.readLine()) != null) {
+                System.out.println("Hallo " + line);
+            }
+            bufferReader.close();
+        } catch (IOException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
+        ;
+    }
 }
