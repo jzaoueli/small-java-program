@@ -1,9 +1,6 @@
 package bla.test2;
 
-import java.io.BufferedReader;
-import java.io.FileInputStream;
-import java.io.IOException;
-import java.io.InputStreamReader;
+import java.io.*;
 
 import bla.test2.base.Strategy;
 
@@ -12,22 +9,21 @@ import bla.test2.base.Strategy;
  */
 public class GreetingStrategy implements Strategy {
 
+    /**
+     * @param inputStream
+     */
 
-    public void algorithmus(String fileName) {
-        String line = "";
+    public void algorithmus(InputStream inputStream) {
+        String line;
         try {
-            FileInputStream inputStream = new FileInputStream(fileName);
-            InputStreamReader inputStreamReader = new InputStreamReader(inputStream);
-            BufferedReader bufferReader = new BufferedReader(inputStreamReader);
-            bufferReader.readLine();
+            System.out.println("+++++++++++++++++GreetingStrategy++++++++++++++++++++++");
+            BufferedReader bufferReader = new BufferedReader(new InputStreamReader(inputStream, "UTF-8"));
             while ((line = bufferReader.readLine()) != null) {
                 System.out.println("Hallo " + line);
             }
             bufferReader.close();
         } catch (IOException e) {
-            // TODO Auto-generated catch block
             e.printStackTrace();
         }
-        ;
     }
 }

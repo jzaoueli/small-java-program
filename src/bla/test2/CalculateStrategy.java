@@ -1,9 +1,6 @@
 package bla.test2;
 
-import java.io.BufferedReader;
-import java.io.FileInputStream;
-import java.io.IOException;
-import java.io.InputStreamReader;
+import java.io.*;
 
 import bla.test2.base.Strategy;
 
@@ -12,14 +9,17 @@ import bla.test2.base.Strategy;
  */
 public class CalculateStrategy implements Strategy {
 
-    public void algorithmus(String fileName) {
-        String line = "";
+    /**
+     * @param inputStream
+     */
+
+    public void algorithmus(InputStream inputStream) {
+        String line;
         int sum = 0;
         try {
-            FileInputStream inputStream = new FileInputStream(fileName);
             InputStreamReader inputStreamReader = new InputStreamReader(inputStream);
             BufferedReader bufferReader = new BufferedReader(inputStreamReader);
-            bufferReader.readLine();
+            System.out.println("+++++++++++++++++CalculateStrategy++++++++++++++++++++++");
             while ((line = bufferReader.readLine()) != null) {
                 sum = sum + Integer.valueOf(line);
             }
@@ -28,7 +28,6 @@ public class CalculateStrategy implements Strategy {
             // TODO Auto-generated catch block
             e.printStackTrace();
         }
-        ;
         System.out.println("the final sum =" + sum);
     }
 }
