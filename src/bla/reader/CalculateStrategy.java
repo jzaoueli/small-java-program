@@ -24,6 +24,6 @@ public class CalculateStrategy implements Strategy {
             // TODO Auto-generated catch block
             e.printStackTrace();
         }
-        System.out.print("the final sum = " + sum);
+        System.out.println("the final sum = " + sum);
     }
 }
