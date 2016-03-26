@@ -5,11 +5,11 @@ import java.io.*;
 import bla.reader.base.Strategy;
 
 /**
- * Aufgabe: calculate and show
+ * Task: get numbers from InputStream , calculate and show the sum
  */
 public class CalculateStrategy implements Strategy {
 
-    public void algorithmus(InputStream inputStream) {
+    public void algorithm(InputStream inputStream) {
         String line;
         int sum = 0;
         try {
@@ -24,6 +24,6 @@ public class CalculateStrategy implements Strategy {
             // TODO Auto-generated catch block
             e.printStackTrace();
         }
-        System.out.print("the final sum =" + sum);
+        System.out.print("the final sum = " + sum);
     }
 }

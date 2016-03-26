@@ -6,8 +6,9 @@ import bla.reader.GreetingStrategy;
 import java.io.InputStream;
 
 /**
- * decide if greeting or calculate
- * Aufgabe: call the strategy
+ * Task:
+ * - decide if greeting, calculate or custom
+ * - call the strategy
  */
 public class Context {
 
@@ -24,15 +25,14 @@ public class Context {
                 //throw new RuntimeException(" the first line of file was : " + strategyString);
             }
         }
-
     }
 
-    public void contextSchnittstelle(InputStream inputStream) {
-        strategy.algorithmus(inputStream);
+    public void execute(InputStream inputStream) {
+        strategy.algorithm(inputStream);
     }
 
-    public void setStrategie(Strategy strategie) {
-        this.strategy = strategie;
+    public void setStrategy(Strategy strategy) {
+        this.strategy = strategy;
     }
 
 }

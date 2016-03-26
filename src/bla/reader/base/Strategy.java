@@ -3,10 +3,10 @@ package bla.reader.base;
 import java.io.InputStream;
 
 /**
- * Aufgabe: Generalize strategy interface. String Verarbeitung
+ * Task: Generalize strategy interface. InputStream handling
  */
 public interface Strategy {
 
-    void algorithmus(InputStream inputStream);
+    void algorithm(InputStream inputStream);
 
 }

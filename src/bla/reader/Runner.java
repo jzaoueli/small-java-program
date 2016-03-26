@@ -7,17 +7,21 @@ import bla.reader.base.Context;
 import bla.reader.base.Strategy;
 
 /**
- * read file name
- * get first line of file
- * give file content to context
+ * Task:
+ * - read file name
+ * - get first line of file
+ * - give file content to context
  */
 
 public class Runner {
 
+    /**
+     * Task: read names from InputStream and show with congratulation
+     */
     public static Strategy customStrategy = new Strategy() {
 
         @Override
-        public void algorithmus(InputStream inputStream) {
+        public void algorithm(InputStream inputStream) {
             String line;
             try {
                 System.out.println("+++++++++++++++++CustomStrategy++++++++++++++++++++++");
@@ -44,7 +48,7 @@ public class Runner {
 
                     InputStream inputStream = getInputStreamFromFileWithoutStrategy(fileName);
                     Context context = new Context(strategyString);
-                    context.contextSchnittstelle(inputStream);
+                    context.execute(inputStream);
                     break;
                 case "manually":
                     String content = getUserStreamFromUser();
@@ -61,8 +65,8 @@ public class Runner {
 //		//Strategie strategie = new KonkreteStrategieA();
 //		Strategy strategie = new GreetingStrategy();
 //		
-//		context.setStrategie(strategie);
-//		context.contextSchnittstelle();
+//		context.setStrategy(strategie);
+//		context.execute();
     }
 
 

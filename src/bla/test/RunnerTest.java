@@ -17,6 +17,7 @@ import static org.junit.Assert.*;
 
 /**
  * Created by EPD-Jihed on 26.03.2016.
+ * Task: testing Runner.java
  */
 public class RunnerTest {
 
@@ -124,14 +125,14 @@ public class RunnerTest {
         InputStream inputStream = getInputStreamFromFileWithoutStrategy(CALCULATE_FILE_NAME_STRING);
 
         Context context = new Context(strategyString);
-        context.contextSchnittstelle(inputStream);
+        context.execute(inputStream);
     }
 
     private static void whenCalculateString() {
         InputStream inputStream = getInputStreamFromString(CONTENT_CALCULATE_STRING);
 
         Context context = new Context(CALCULATE_STRATEGY_STRING);
-        context.contextSchnittstelle(inputStream);
+        context.execute(inputStream);
     }
 
     private static void whenGreetingsFile() {
@@ -140,14 +141,14 @@ public class RunnerTest {
         InputStream inputStream = getInputStreamFromFileWithoutStrategy(GREETING_FILE_NAME_STRING);
 
         Context context = new Context(strategyString);
-        context.contextSchnittstelle(inputStream);
+        context.execute(inputStream);
     }
 
     private static void whenGreetingsString() {
         InputStream inputStream = getInputStreamFromString(CONTENT_GREETING_STRING);
 
         Context context = new Context(GREETING_STRATEGY_STRING);
-        context.contextSchnittstelle(inputStream);
+        context.execute(inputStream);
     }
 
     private static void whenCustomStrategyString() {
@@ -155,8 +156,8 @@ public class RunnerTest {
         // use customStrategy (see member variable)
 
         Context context = new Context(CUSTOM_STRATEGY_STRING);
-        context.setStrategie(customStrategy);
-        context.contextSchnittstelle(inputStream);
+        context.setStrategy(customStrategy);
+        context.execute(inputStream);
     }
 
     private static void whenCustomStrategyFile() {
@@ -166,8 +167,8 @@ public class RunnerTest {
         InputStream inputStream = getInputStreamFromFileWithoutStrategy(GREETING_FILE_NAME_STRING);
 
         Context context = new Context(CUSTOM_STRATEGY_STRING);
-        context.setStrategie(customStrategy);
-        context.contextSchnittstelle(inputStream);
+        context.setStrategy(customStrategy);
+        context.execute(inputStream);
     }
 
 }
