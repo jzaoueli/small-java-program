@@ -1,7 +1,7 @@
-package bla.test2.base;
+package bla.reader.base;
 
-import bla.test2.CalculateStrategy;
-import bla.test2.GreetingStrategy;
+import bla.reader.CalculateStrategy;
+import bla.reader.GreetingStrategy;
 
 import java.io.InputStream;
 

@@ -1,4 +1,4 @@
-package bla.test;
+package bla.first;
 
 public class ClassA {
 

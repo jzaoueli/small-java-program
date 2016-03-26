@@ -1,17 +1,13 @@
-package bla.test2;
+package bla.reader;
 
 import java.io.*;
 
-import bla.test2.base.Strategy;
+import bla.reader.base.Strategy;
 
 /**
  * Aufgabe: read names and show
  */
 public class GreetingStrategy implements Strategy {
-
-    /**
-     * @param inputStream
-     */
 
     public void algorithmus(InputStream inputStream) {
         String line;

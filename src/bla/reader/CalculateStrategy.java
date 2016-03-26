@@ -1,17 +1,13 @@
-package bla.test2;
+package bla.reader;
 
 import java.io.*;
 
-import bla.test2.base.Strategy;
+import bla.reader.base.Strategy;
 
 /**
  * Aufgabe: calculate and show
  */
 public class CalculateStrategy implements Strategy {
-
-    /**
-     * @param inputStream
-     */
 
     public void algorithmus(InputStream inputStream) {
         String line;
@@ -28,6 +24,6 @@ public class CalculateStrategy implements Strategy {
             // TODO Auto-generated catch block
             e.printStackTrace();
         }
-        System.out.println("the final sum =" + sum);
+        System.out.print("the final sum =" + sum);
     }
 }

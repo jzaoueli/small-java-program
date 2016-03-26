@@ -1,12 +1,10 @@
-package bla.test;
+package bla.first;
 
 import java.io.BufferedReader;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
-
-import bla.test2.Runner;
 
 public class ReadFile extends ClassB {
     public static void main(String[] args) {

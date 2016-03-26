@@ -1,10 +1,10 @@
-package bla.test2;
+package bla.reader;
 
 import java.io.*;
 import java.nio.charset.StandardCharsets;
 
-import bla.test2.base.Context;
-import bla.test2.base.Strategy;
+import bla.reader.base.Context;
+import bla.reader.base.Strategy;
 
 /**
  * read file name

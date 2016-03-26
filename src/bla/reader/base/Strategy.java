@@ -1,4 +1,4 @@
-package bla.test2.base;
+package bla.reader.base;
 
 import java.io.InputStream;
 
