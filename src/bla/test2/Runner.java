@@ -36,18 +36,46 @@ public class Runner {
 
     public static void main(String[] args) {
 
-        // Greeting
-        // Calculate
-        // Praise
+        /**
+         * Test
+         **/
+        /*
+         // Greeting
+         testCalculateFile();
+         testCalculateString();
 
-        testCalculateFile();
-        testCalculateString();
+         // Calculate
+         testGreetingsFile();
+         testGreetingsString();
 
-        testGreetingsFile();
-        testGreetingsString();
+         // Praise
+         testCustomStrategyString();
+         testCustomStrategyFile();
+         */
 
-        testCustomStrategyString();
-        testCustomStrategyFile();
+
+        while (true) {
+            String userChoice = getChoiceOfUser();
+
+            switch (userChoice) {
+                case "file":
+                    String fileName = getFileNameFromUser();
+                    String strategyString = getLineFromFile(fileName);
+
+                    InputStream inputStream = getInputStreamFromFileWithoutStrategy(fileName);
+                    context = new Context(strategyString);
+                    context.contextSchnittstelle(inputStream);
+                    break;
+                case "manually":
+                    String content = getUserStreamFromUser();
+                    System.out.println("still working about this");
+                    break;
+                default:
+                    //System.out.println("please give your choice (file/manually)");
+                    throw new RuntimeException("User choice was : " + userChoice);
+            }
+        }
+
 
 //		Context context = new Context();
 //		//Strategie strategie = new KonkreteStrategieA();
@@ -56,6 +84,7 @@ public class Runner {
 //		context.setStrategie(strategie);
 //		context.contextSchnittstelle();
     }
+
 
     public static void testCalculateFile() {
         String fileName = "files/calculate.txt";//
@@ -140,6 +169,33 @@ public class Runner {
         return line;
     }
 
+    private static String getChoiceOfUser() {
+        String fileName = "";
+        try {
+            InputStreamReader fileNameInputStreamReader = new InputStreamReader(System.in);
+            BufferedReader keyboardInput = new BufferedReader(fileNameInputStreamReader);
+            System.out.println("if you want to use textFile tape \"file\", ");
+            System.out.println("if you want to give you text manually tape \"manually\" : ");
+            fileName = keyboardInput.readLine();
+        } catch (Exception e) {
+            System.out.println(e.toString());
+        }
+        return fileName;
+    }
+
+    private static String getUserStreamFromUser() {
+        String fileName = "";
+        try {
+            InputStreamReader fileNameInputStreamReader = new InputStreamReader(System.in);
+            BufferedReader keyboardInput = new BufferedReader(fileNameInputStreamReader);
+            System.out.println("write your text please : ");
+            fileName = keyboardInput.readLine();
+        } catch (Exception e) {
+            System.out.println(e.toString());
+        }
+        return fileName;
+    }
+
     private static String getFileNameFromUser() {
         String fileName = "";
         try {
@@ -160,18 +216,16 @@ public class Runner {
             InputStreamReader inputStreamReader = new InputStreamReader(inputStream);
             BufferedReader bufferReader = new BufferedReader(inputStreamReader);
             bufferReader.readLine();
-            String line = "";
+            String line;
             String stringResult = "";
 
             while ((line = bufferReader.readLine()) != null) {
                 stringResult = stringResult + line + "\n";
             }
-            InputStream inputStreamResult = new ByteArrayInputStream(stringResult.getBytes(StandardCharsets.UTF_8));
+            inputStream = new ByteArrayInputStream(stringResult.getBytes(StandardCharsets.UTF_8));
 
-            return inputStreamResult;
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
-        } catch (IOException e) {
+            return inputStream;
+        } catch (Exception e) {
             e.printStackTrace();
         }
         return null;
@@ -179,7 +233,6 @@ public class Runner {
 
 
     private static InputStream getInputStreamFromString(String contentString) {
-        InputStream contentInputStream = new ByteArrayInputStream(contentString.getBytes(StandardCharsets.UTF_8));
-        return contentInputStream;
+        return new ByteArrayInputStream(contentString.getBytes(StandardCharsets.UTF_8));
     }
 }
