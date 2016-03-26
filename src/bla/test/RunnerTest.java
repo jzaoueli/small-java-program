@@ -25,20 +25,20 @@ public class RunnerTest {
     private final ByteArrayOutputStream errContent = new ByteArrayOutputStream();
 
     private static final String EXPECTED_STRING_CALCULATE_FILE = "+++++++++++++++++CalculateStrategy++++++++++++++++++++++\r\n" +
-            "the final sum =45";
+            "the final sum = 45\r\n";
     private static final String EXPECTED_STRING_CALCULATE_STRING = "+++++++++++++++++CalculateStrategy++++++++++++++++++++++\r\n" +
-            "the final sum =2047";
+            "the final sum = 2047\r\n";
     private static final String EXPECTED_STRING_GREETING_FILE = "+++++++++++++++++GreetingStrategy++++++++++++++++++++++\r\n" +
-            "Hallo Nico\r\n" +
-            "Hallo Enrico\r\n" +
-            "Hallo Alexander\r\n" +
-            "Hallo Michael\r\n" +
-            "Hallo Thomas\r\n" +
-            "Hallo Jana\r\n";
+            "Hello Nico\r\n" +
+            "Hello Enrico\r\n" +
+            "Hello Alexander\r\n" +
+            "Hello Michael\r\n" +
+            "Hello Thomas\r\n" +
+            "Hello Jana\r\n";
     private static final String EXPECTED_STRING_GREETING_STRING = "+++++++++++++++++GreetingStrategy++++++++++++++++++++++\r\n" +
-            "Hallo Enrico\r\n" +
-            "Hallo Alexander\r\n" +
-            "Hallo Thomas\r\n";
+            "Hello Enrico\r\n" +
+            "Hello Alexander\r\n" +
+            "Hello Thomas\r\n";
     private static final String EXPECTED_STRING_CUSTOM_STRATEGY_STRING = "will use custom strategy\r\n" +
             "+++++++++++++++++CustomStrategy++++++++++++++++++++++\r\n" +
             "congratulation Enrico\r\n" +
