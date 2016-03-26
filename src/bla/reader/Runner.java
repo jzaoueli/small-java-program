@@ -14,9 +14,7 @@ import bla.reader.base.Strategy;
 
 public class Runner {
 
-    private static Context context;
-
-    private static Strategy customStrategy = new Strategy() {
+    public static Strategy customStrategy = new Strategy() {
 
         @Override
         public void algorithmus(InputStream inputStream) {
@@ -36,24 +34,6 @@ public class Runner {
 
     public static void main(String[] args) {
 
-        /**
-         * Test
-         **/
-        /*
-         // Greeting
-         testCalculateFile();
-         testCalculateString();
-
-         // Calculate
-         testGreetingsFile();
-         testGreetingsString();
-
-         // Praise
-         testCustomStrategyString();
-         testCustomStrategyFile();
-         */
-
-
         while (true) {
             String userChoice = getChoiceOfUser();
 
@@ -63,12 +43,12 @@ public class Runner {
                     String strategyString = getLineFromFile(fileName);
 
                     InputStream inputStream = getInputStreamFromFileWithoutStrategy(fileName);
-                    context = new Context(strategyString);
+                    Context context = new Context(strategyString);
                     context.contextSchnittstelle(inputStream);
                     break;
                 case "manually":
                     String content = getUserStreamFromUser();
-                    System.out.println("still working about this");
+                    System.out.println("still working about this, ur text is \n" + content);
                     break;
                 default:
                     //System.out.println("please give your choice (file/manually)");
@@ -86,75 +66,7 @@ public class Runner {
     }
 
 
-    public static void testCalculateFile() {
-        String fileName = "files/calculate.txt";//
-
-        String strategyString = getLineFromFile(fileName);
-
-        InputStream inputStream = getInputStreamFromFileWithoutStrategy(fileName);
-
-        context = new Context(strategyString);
-        context.contextSchnittstelle(inputStream);
-    }
-
-    public static void testCalculateString() {
-        String strategyString = "Calculate";//
-        String content = "24\n789\n1234";//
-
-        InputStream inputStream = getInputStreamFromString(content);
-
-        context = new Context(strategyString);
-        context.contextSchnittstelle(inputStream);
-    }
-
-    public static void testGreetingsFile() {
-        String fileName = "files/greeting.txt";//
-
-        String strategyString = getLineFromFile(fileName);
-
-        InputStream inputStream = getInputStreamFromFileWithoutStrategy(fileName);
-
-        context = new Context(strategyString);
-        context.contextSchnittstelle(inputStream);
-    }
-
-    public static void testGreetingsString() {
-        String strategyString = "Greeting";//
-        String content = "Enrico\nAlexander\nThomas";//
-
-        InputStream inputStream = getInputStreamFromString(content);
-
-        context = new Context(strategyString);
-        context.contextSchnittstelle(inputStream);
-    }
-
-    public static void testCustomStrategyString() {
-        String strategyString = "Praise";//
-        String content = "Enrico\nAlexander\nThomas";//
-
-        InputStream inputStream = getInputStreamFromString(content);
-        // use customStrategy (see member variable)
-
-        context = new Context(strategyString);
-        context.setStrategie(customStrategy);
-        context.contextSchnittstelle(inputStream);
-    }
-
-    public static void testCustomStrategyFile() {
-        // use "files/greeting.txt"
-        // use same strategy from testCustomStrategyString
-
-        String fileName = "files/greeting.txt";//
-        String strategyString = "Praise";//
-
-        InputStream inputStream = getInputStreamFromFileWithoutStrategy(fileName);
-
-        context = new Context(strategyString);
-        context.setStrategie(customStrategy);
-        context.contextSchnittstelle(inputStream);
-    }
-
-    private static String getLineFromFile(String fileName) {
+    public static String getLineFromFile(String fileName) {
         String line = "";
         try {
             FileInputStream inputStream = new FileInputStream(fileName);
@@ -209,7 +121,7 @@ public class Runner {
         return fileName;
     }
 
-    private static InputStream getInputStreamFromFileWithoutStrategy(String fileName) {
+    public static InputStream getInputStreamFromFileWithoutStrategy(String fileName) {
         InputStream inputStream;
         try {
             inputStream = new FileInputStream(fileName);
@@ -232,7 +144,7 @@ public class Runner {
     }
 
 
-    private static InputStream getInputStreamFromString(String contentString) {
+    public static InputStream getInputStreamFromString(String contentString) {
         return new ByteArrayInputStream(contentString.getBytes(StandardCharsets.UTF_8));
     }
 }
