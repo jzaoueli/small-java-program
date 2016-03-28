@@ -21,7 +21,7 @@ public class Context {
             } else if (strategyString.equals("Greeting")) {
                 strategy = new GreetingStrategy();
             } else {
-                System.out.println("will use custom strategy");
+                System.out.println("Strategy not found, custom strategy will be used");
                 //throw new RuntimeException(" the first line of file was : " + strategyString);
             }
         }

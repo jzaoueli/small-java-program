@@ -1,7 +1,6 @@
 package bla.test;
 
 import bla.reader.Runner;
-import bla.reader.base.Context;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
@@ -10,9 +9,7 @@ import java.io.ByteArrayOutputStream;
 import java.io.InputStream;
 import java.io.PrintStream;
 
-import static bla.reader.Runner.customStrategy;
-import static bla.reader.Runner.getInputStreamFromFileWithoutStrategy;
-import static bla.reader.Runner.getInputStreamFromString;
+import static bla.reader.Runner.*;
 import static org.junit.Assert.*;
 
 /**
@@ -22,7 +19,6 @@ import static org.junit.Assert.*;
 public class RunnerTest {
 
     private final ByteArrayOutputStream outContent = new ByteArrayOutputStream();
-    private final ByteArrayOutputStream errContent = new ByteArrayOutputStream();
 
     private static final String EXPECTED_STRING_CALCULATE_FILE = "+++++++++++++++++CalculateStrategy++++++++++++++++++++++\r\n" +
             "the final sum = 45\r\n";
@@ -78,40 +74,40 @@ public class RunnerTest {
     @Test
     public void testCalculateFile() {
         whenCalculateFile(CALCULATE_FILE_NAME_STRING);
-        thenResultIsShown(EXPECTED_STRING_CALCULATE_FILE);
+        thenExpectedResultIsShown(EXPECTED_STRING_CALCULATE_FILE);
     }
 
     @Test
     public void testCalculateString() {
         whenCalculateString(CONTENT_CALCULATE_STRING, CALCULATE_STRATEGY_STRING);
-        thenResultIsShown(EXPECTED_STRING_CALCULATE_STRING);
+        thenExpectedResultIsShown(EXPECTED_STRING_CALCULATE_STRING);
     }
 
     @Test
     public void testGreetingsFile() {
         whenGreetingsFile(GREETING_FILE_NAME_STRING);
-        thenResultIsShown(EXPECTED_STRING_GREETING_FILE);
+        thenExpectedResultIsShown(EXPECTED_STRING_GREETING_FILE);
     }
 
     @Test
     public void testGreetingsString() {
         whenGreetingsString(CONTENT_GREETING_STRING, GREETING_STRATEGY_STRING);
-        thenResultIsShown(EXPECTED_STRING_GREETING_STRING);
+        thenExpectedResultIsShown(EXPECTED_STRING_GREETING_STRING);
     }
 
     @Test
     public void testCustomStrategyString() {
         whenCustomStrategyString(CONTENT_CUSTOM_STRING, CUSTOM_STRATEGY_STRING);
-        thenResultIsShown(EXPECTED_STRING_CUSTOM_STRATEGY_STRING);
+        thenExpectedResultIsShown(EXPECTED_STRING_CUSTOM_STRATEGY_STRING);
     }
 
     @Test
     public void testCustomStrategyFile() {
         whenCustomStrategyFile(GREETING_FILE_NAME_STRING, CUSTOM_STRATEGY_STRING);
-        thenResultIsShown(EXPECTED_STRING_CUSTOM_STRATEGY_FILE);
+        thenExpectedResultIsShown(EXPECTED_STRING_CUSTOM_STRATEGY_FILE);
     }
 
-    private void thenResultIsShown(String expectedString) {
+    private void thenExpectedResultIsShown(String expectedString) {
         String outString = outContent.toString();
         assertEquals(expectedString, outString);
     }
@@ -149,12 +145,6 @@ public class RunnerTest {
         // use same strategy from testCustomStrategyString
         InputStream inputStream = getInputStreamFromFileWithoutStrategy(fileName);
         startHandling(strategy, inputStream);
-    }
-
-    private static void startHandling(String strategy, InputStream inputStream){
-        Context context = new Context(strategy);
-        if (!strategy.equals("Greeting") && !strategy.equals("Calculate")) context.setStrategy(customStrategy);
-        context.execute(inputStream);
     }
 
 }

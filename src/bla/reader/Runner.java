@@ -47,11 +47,11 @@ public class Runner {
                     String strategyString = getLineFromFile(fileName);
 
                     InputStream inputStream = getInputStreamFromFileWithoutStrategy(fileName);
-                    Context context = new Context(strategyString);
-                    context.execute(inputStream);
+                    startHandling(strategyString, inputStream);
                     break;
                 case "manually":
                     String content = getUserStreamFromUser();
+
                     System.out.println("still working about this, ur text is \n" + content);
                     break;
                 default:
@@ -59,14 +59,13 @@ public class Runner {
                     throw new RuntimeException("User choice was : " + userChoice);
             }
         }
+    }
 
-
-//		Context context = new Context();
-//		//Strategie strategie = new KonkreteStrategieA();
-//		Strategy strategie = new GreetingStrategy();
-//		
-//		context.setStrategy(strategie);
-//		context.execute();
+    public static void startHandling(String strategyString, InputStream inputStream) {
+        Context context = new Context(strategyString);
+        if (!strategyString.equals("Greeting") && !strategyString.equals("Calculate"))
+            context.setStrategy(customStrategy);
+        context.execute(inputStream);
     }
 
 
@@ -146,7 +145,6 @@ public class Runner {
         }
         return null;
     }
-
 
     public static InputStream getInputStreamFromString(String contentString) {
         return new ByteArrayInputStream(contentString.getBytes(StandardCharsets.UTF_8));
