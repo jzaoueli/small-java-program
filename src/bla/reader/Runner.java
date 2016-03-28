@@ -37,28 +37,56 @@ public class Runner {
     };
 
     public static void main(String[] args) {
-
         while (true) {
             String userChoice = getChoiceOfUser();
-
             switch (userChoice) {
                 case "file":
-                    String fileName = getFileNameFromUser();
-                    String strategyString = getLineFromFile(fileName);
-
-                    InputStream inputStream = getInputStreamFromFileWithoutStrategy(fileName);
-                    startHandling(strategyString, inputStream);
+                    handleFile();
                     break;
                 case "manually":
-                    String content = getUserStreamFromUser();
-
-                    System.out.println("still working about this, ur text is \n" + content);
+                    handleManual();
                     break;
                 default:
-                    //System.out.println("please give your choice (file/manually)");
                     throw new RuntimeException("User choice was : " + userChoice);
             }
         }
+    }
+
+    private static void handleManual() {
+        String inputString = askUserAndGetAnswer("give your input :");
+        String content = inputString.replaceAll("\\\\n", "\n");
+
+        String userStrategy = askUserAndGetAnswer("Give the strategy to use : ");
+
+        if (userStrategy.equals("Greeting") || userStrategy.equals("Calculate") || userStrategy.equals("Praise")) {
+            InputStream inputStream = getInputStreamFromString(content);
+            startHandling(userStrategy, inputStream);
+        } else {
+            throw new RuntimeException("Given Strategy don't exist : '" + userStrategy + "'");
+        }
+    }
+
+    private static void handleFile() {
+        String fileName = getFileNameFromUser();
+        String userStrategy = getStrategy(fileName);
+        InputStream inputStream = getInputStreamFromFileWithoutStrategy(fileName);
+        startHandling(userStrategy, inputStream);
+    }
+
+    private static String getStrategy(String fileName) {
+        String useCustomStrategy = askUserAndGetAnswer("If you want to use custom strategy give the name, else give 'no' :");
+        String userStrategy;
+        switch (useCustomStrategy) {
+            case "no":
+                userStrategy = getLineFromFile(fileName);
+                break;
+            case "Praise":
+                userStrategy = useCustomStrategy;
+                break;
+            default:
+                throw new RuntimeException("Given Strategy don't exist : '" + useCustomStrategy + "'");
+        }
+        return userStrategy;
     }
 
     public static void startHandling(String strategyString, InputStream inputStream) {
@@ -89,8 +117,8 @@ public class Runner {
         try {
             InputStreamReader fileNameInputStreamReader = new InputStreamReader(System.in);
             BufferedReader keyboardInput = new BufferedReader(fileNameInputStreamReader);
-            System.out.println("if you want to use textFile tape \"file\", ");
-            System.out.println("if you want to give you text manually tape \"manually\" : ");
+            System.out.println("If you want to use textFile tape \"file\", ");
+            System.out.print("if you want to give you text manually tape \"manually\" : ");
             fileName = keyboardInput.readLine();
         } catch (Exception e) {
             System.out.println(e.toString());
@@ -98,17 +126,17 @@ public class Runner {
         return fileName;
     }
 
-    private static String getUserStreamFromUser() {
-        String fileName = "";
+    private static String askUserAndGetAnswer(String question) {
+        String inputText = "";
         try {
             InputStreamReader fileNameInputStreamReader = new InputStreamReader(System.in);
             BufferedReader keyboardInput = new BufferedReader(fileNameInputStreamReader);
-            System.out.println("write your text please : ");
-            fileName = keyboardInput.readLine();
+            System.out.print(question);
+            inputText = keyboardInput.readLine();
         } catch (Exception e) {
             System.out.println(e.toString());
         }
-        return fileName;
+        return inputText;
     }
 
     private static String getFileNameFromUser() {
@@ -116,7 +144,7 @@ public class Runner {
         try {
             InputStreamReader fileNameInputStreamReader = new InputStreamReader(System.in);
             BufferedReader keyboardInput = new BufferedReader(fileNameInputStreamReader);
-            System.out.print("Path von Text Datei eingeben : ");
+            System.out.print("Give the path of file : ");
             fileName = keyboardInput.readLine();
         } catch (Exception e) {
             System.out.println(e.toString());
