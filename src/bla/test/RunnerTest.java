@@ -35,12 +35,12 @@ public class RunnerTest {
             "Hello Enrico\r\n" +
             "Hello Alexander\r\n" +
             "Hello Thomas\r\n";
-    private static final String EXPECTED_STRING_CUSTOM_STRATEGY_STRING = "will use custom strategy\r\n" +
+    private static final String EXPECTED_STRING_CUSTOM_STRATEGY_STRING = "Strategy not found, custom strategy will be used\r\n" +
             "+++++++++++++++++CustomStrategy++++++++++++++++++++++\r\n" +
             "congratulation Enrico\r\n" +
             "congratulation Alexander\r\n" +
             "congratulation Thomas\r\n";
-    private static final String EXPECTED_STRING_CUSTOM_STRATEGY_FILE = "will use custom strategy\r\n" +
+    private static final String EXPECTED_STRING_CUSTOM_STRATEGY_FILE = "Strategy not found, custom strategy will be used\r\n" +
             "+++++++++++++++++CustomStrategy++++++++++++++++++++++\r\n" +
             "congratulation Nico\r\n" +
             "congratulation Enrico\r\n" +
