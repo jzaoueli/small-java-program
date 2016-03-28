@@ -68,48 +68,46 @@ public class RunnerTest {
     @Before
     public void setUpStreams() {
         System.setOut(new PrintStream(outContent));
-        System.setErr(new PrintStream(errContent));
     }
 
     @After
     public void cleanUpStreams() {
         System.setOut(null);
-        System.setErr(null);
     }
 
     @Test
     public void testCalculateFile() {
-        whenCalculateFile();
+        whenCalculateFile(CALCULATE_FILE_NAME_STRING);
         thenResultIsShown(EXPECTED_STRING_CALCULATE_FILE);
     }
 
     @Test
     public void testCalculateString() {
-        whenCalculateString();
+        whenCalculateString(CONTENT_CALCULATE_STRING, CALCULATE_STRATEGY_STRING);
         thenResultIsShown(EXPECTED_STRING_CALCULATE_STRING);
     }
 
     @Test
     public void testGreetingsFile() {
-        whenGreetingsFile();
+        whenGreetingsFile(GREETING_FILE_NAME_STRING);
         thenResultIsShown(EXPECTED_STRING_GREETING_FILE);
     }
 
     @Test
     public void testGreetingsString() {
-        whenGreetingsString();
+        whenGreetingsString(CONTENT_GREETING_STRING, GREETING_STRATEGY_STRING);
         thenResultIsShown(EXPECTED_STRING_GREETING_STRING);
     }
 
     @Test
     public void testCustomStrategyString() {
-        whenCustomStrategyString();
+        whenCustomStrategyString(CONTENT_CUSTOM_STRING, CUSTOM_STRATEGY_STRING);
         thenResultIsShown(EXPECTED_STRING_CUSTOM_STRATEGY_STRING);
     }
 
     @Test
     public void testCustomStrategyFile() {
-        whenCustomStrategyFile();
+        whenCustomStrategyFile(GREETING_FILE_NAME_STRING, CUSTOM_STRATEGY_STRING);
         thenResultIsShown(EXPECTED_STRING_CUSTOM_STRATEGY_FILE);
     }
 
@@ -118,56 +116,44 @@ public class RunnerTest {
         assertEquals(expectedString, outString);
     }
 
-    private static void whenCalculateFile() {
-
-        String strategyString = Runner.getLineFromFile(CALCULATE_FILE_NAME_STRING);
-
-        InputStream inputStream = getInputStreamFromFileWithoutStrategy(CALCULATE_FILE_NAME_STRING);
-
-        Context context = new Context(strategyString);
-        context.execute(inputStream);
+    private static void whenCalculateFile(String fileName) {
+        String strategy = Runner.getLineFromFile(fileName);
+        InputStream inputStream = getInputStreamFromFileWithoutStrategy(fileName);
+        startHandling(strategy, inputStream);
     }
 
-    private static void whenCalculateString() {
-        InputStream inputStream = getInputStreamFromString(CONTENT_CALCULATE_STRING);
-
-        Context context = new Context(CALCULATE_STRATEGY_STRING);
-        context.execute(inputStream);
+    private static void whenCalculateString(String content, String CALCULATE_STRATEGY_STRING) {
+        InputStream inputStream = getInputStreamFromString(content);
+        startHandling(CALCULATE_STRATEGY_STRING, inputStream);
     }
 
-    private static void whenGreetingsFile() {
-        String strategyString = Runner.getLineFromFile(GREETING_FILE_NAME_STRING);
-
-        InputStream inputStream = getInputStreamFromFileWithoutStrategy(GREETING_FILE_NAME_STRING);
-
-        Context context = new Context(strategyString);
-        context.execute(inputStream);
+    private static void whenGreetingsFile(String fileName) {
+        String strategy = Runner.getLineFromFile(fileName);
+        InputStream inputStream = getInputStreamFromFileWithoutStrategy(fileName);
+        startHandling(strategy, inputStream);
     }
 
-    private static void whenGreetingsString() {
-        InputStream inputStream = getInputStreamFromString(CONTENT_GREETING_STRING);
-
-        Context context = new Context(GREETING_STRATEGY_STRING);
-        context.execute(inputStream);
+    private static void whenGreetingsString(String content, String strategy) {
+        InputStream inputStream = getInputStreamFromString(content);
+        startHandling(strategy, inputStream);
     }
 
-    private static void whenCustomStrategyString() {
-        InputStream inputStream = getInputStreamFromString(CONTENT_CUSTOM_STRING);
+    private static void whenCustomStrategyString(String content, String strategy) {
+        InputStream inputStream = getInputStreamFromString(content);
         // use customStrategy (see member variable)
-
-        Context context = new Context(CUSTOM_STRATEGY_STRING);
-        context.setStrategy(customStrategy);
-        context.execute(inputStream);
+        startHandling(strategy, inputStream);
     }
 
-    private static void whenCustomStrategyFile() {
+    private static void whenCustomStrategyFile(String fileName, String strategy) {
         // use "files/greeting.txt"
         // use same strategy from testCustomStrategyString
+        InputStream inputStream = getInputStreamFromFileWithoutStrategy(fileName);
+        startHandling(strategy, inputStream);
+    }
 
-        InputStream inputStream = getInputStreamFromFileWithoutStrategy(GREETING_FILE_NAME_STRING);
-
-        Context context = new Context(CUSTOM_STRATEGY_STRING);
-        context.setStrategy(customStrategy);
+    private static void startHandling(String strategy, InputStream inputStream){
+        Context context = new Context(strategy);
+        if (!strategy.equals("Greeting") && !strategy.equals("Calculate")) context.setStrategy(customStrategy);
         context.execute(inputStream);
     }
 
