@@ -1,4 +1,4 @@
-package bla.reader;
+package bla.reader.defaultstrategies;
 
 import java.io.*;
 

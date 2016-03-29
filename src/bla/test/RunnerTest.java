@@ -1,6 +1,6 @@
 package bla.test;
 
-import bla.reader.Runner;
+import bla.Runner;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
@@ -9,7 +9,7 @@ import java.io.ByteArrayOutputStream;
 import java.io.InputStream;
 import java.io.PrintStream;
 
-import static bla.reader.Runner.*;
+import static bla.Runner.*;
 import static org.junit.Assert.*;
 
 /**

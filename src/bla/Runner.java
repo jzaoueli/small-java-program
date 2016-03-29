@@ -1,4 +1,4 @@
-package bla.reader;
+package bla;
 
 import java.io.*;
 import java.nio.charset.StandardCharsets;

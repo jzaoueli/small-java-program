@@ -1,7 +1,7 @@
 package bla.reader.base;
 
-import bla.reader.CalculateStrategy;
-import bla.reader.GreetingStrategy;
+import bla.reader.defaultstrategies.CalculateStrategy;
+import bla.reader.defaultstrategies.GreetingStrategy;
 
 import java.io.InputStream;
 
@@ -9,6 +9,7 @@ import java.io.InputStream;
  * Task:
  * - decide if greeting, calculate or custom
  * - call the strategy
+ * this class can do much more than it do
  */
 public class Context {
 
