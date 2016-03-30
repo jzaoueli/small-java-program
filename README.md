@@ -6,7 +6,8 @@
   - can also read Stream from user.
 - with unit test (Junit4).
 
-TODO Divide project main source from test : see "java-project-structure (Maven/Gradle)"
-TODO Thinking about Runner and code give new structure
-GOAL : As user i of Library i want just give path/string and strategy optionally. i want not care about streams
-TODO + Maven || Gradle apply
+- GOAL : As user i of Library i want just give path/string and strategy optionally. i want not care about streams
+
+  - TODO Divide project main source from test : see "java-project-structure (Maven/Gradle)"
+  - TODO Thinking about Runner and code give new structure
+  - TODO + Maven || Gradle apply
